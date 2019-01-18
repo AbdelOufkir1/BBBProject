@@ -30,7 +30,7 @@ const database = firebase.database();
     @param {str} resumeStr  
     @param {str} resumeURL  
     @param {arr} portfolio  
-    @desc - pretty much sends in an obj to the already set path <cohort5_0/class5_2/fellows>
+    @desc - sends in an obj to the already set path <cohort5_0/class5_2/fellows>
             while it does that, it creates a default key which is the id to retrieve the obj 
             data.
     @note - pre-wrote a function invokation below to show more or less how we'd use it.
@@ -54,12 +54,24 @@ const createUser = (firstName, lastName, email, imgURL, story, resumeStr, resume
 
 /*
     @func readUser
-    @param uid
-    @desc - retrieves corresponding obj data by the id we provide when we invoke the func.
+    @param uid || empty
+    @desc - retrieves corresponding obj data by the id we provide when we invoke the func,if no id is provided function will retrieve all users.
     @note - pre-wrote a function invokation below to show more or less how we'd use it. 
 */
 const readUser = uid => {
-    return firebase.database().ref('/cohort5_0/class5_2/fellows/' + uid).once('value').then(function(snapshot) {
+    if (!uid){
+        return firebase.database().ref('/cohort5_0/class5_2/fellows/').once('value').then(function(snapshot) {
+            return snapshot.val();
+        })
+        .then(data => {
+            console.log(data);
+            console.log('Successfully retrieved data');
+        })
+        .catch(e => {
+            console.log('Something went wrong', e.toString());
+        });
+    }
+    else return firebase.database().ref('/cohort5_0/class5_2/fellows/' + uid).once('value').then(function(snapshot) {
         return snapshot.val();
     })
     .then(data => {
@@ -72,3 +84,4 @@ const readUser = uid => {
 }
 
 // readUser('-LWXCSZaFd3qaceV4YIl');
+readUser();
