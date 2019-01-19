@@ -30,7 +30,7 @@ const database = firebase.database();
     @param {str} resumeStr  
     @param {str} resumeURL  
     @param {arr} portfolio  
-    @desc - pretty much sends in an obj to the already set path <cohort5_0/class5_2/fellows>
+    @desc - sends in an obj to the already set path <cohort5_0/class5_2/fellows>
             while it does that, it creates a default key which is the id to retrieve the obj 
             data.
     @note - pre-wrote a function invokation below to show more or less how we'd use it.
