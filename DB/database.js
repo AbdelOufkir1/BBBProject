@@ -86,7 +86,7 @@ const getUsers = uid => {
 /*
     @func defineUsers
     @param {undefined}
-    @desc - takes no arguments, logs an obj witht he list of id's as keys 
+    @desc - takes no arguments, logs an obj with he list of id's as keys 
             and the full name of the user of the corresponding id as value.
 */
 const defineUsers = () => {
