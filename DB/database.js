@@ -64,8 +64,6 @@ const createUser = (firstName, lastName, email, imgURL, story, resumeStr, resume
     });
 }
 
-// createUser('Jose', 'Rodriguez', 'joserodriguez@pursuit.org', '[insert imgURL]', '[insert story]', '[insert resumeStr]', '[insert resumeURL]', ['project1', 'project2']);
-
 /*
     @func getUsers
     @param  {str || ''} uid
@@ -90,20 +88,24 @@ const getUsers = uid => {
     })
     .then(data => {
         console.log(data);
-        console.log('Successfully retrieved data');
+        console.log(`
+        ---------------------------
+        Successfully retrieved data
+        `);
     })
     .catch(e => {
         console.log('Something went wrong', e.toString());
     });
 }
 
-// readUser('-LWXCSZaFd3qaceV4YIl');
-getUsers();
-// defineUsers is for internal usage only. it doesn't return anything.
-// defineUsers takes no arguments, console logs an Object with the list of Id's as keys and the full name of the user of the corresponding ID as the value.
-
+/*
+    @func defineUsers
+    @param {undefined}
+    @desc - takes no arguments, logs an obj with he list of id's as keys 
+            and the full name of the user of the corresponding id as value.
+*/
 const defineUsers = () => {
-    // this is the Obkect that will hold the 'ID's' as keys.
+    // this is the Object that will hold the 'ID's' as keys.
     const fellowsIDs = {};
 
     return firebase.database().ref('/cohort5_0/class5_2/fellows/').once('value').then(function(snapshot) {
@@ -117,8 +119,8 @@ const defineUsers = () => {
          const userWithId = `${data[ele].firstName} ${data[ele].lastName}`;
          fellowsIDs[ele] = userWithId;
         })
-        
-     console.log('Ids and UserNames Retrieved: \n', fellowsIDs);
+      
+        console.log('Ids and UserNames Retrieved: \n', fellowsIDs);
         
     })
     .catch(e => {
